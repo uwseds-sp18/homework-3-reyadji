@@ -1,4 +1,3 @@
-import numpy as np
 import unittest
 from homework3 import create_dataframe
 
@@ -15,7 +14,7 @@ class Homework3Tests(unittest.TestCase):
         video_id, category_id, language columns
         """
         self.assertTrue(
-            np.all(self.test_df.columns == ['category_id', 'video_id', 'language']))
+            set(self.test_df.columns) == set(['category_id', 'video_id', 'language']))
 
     def test_number_rows(self):
         """Testing there are at least 10 rows in the DataFrame"""

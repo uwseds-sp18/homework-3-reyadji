@@ -9,11 +9,11 @@ def create_dataframe(db_path='class.db'):
         raise ValueError('{} does not exist'.format(db_path))
 
     conn = sqlite3.connect(db_path)
-    df_us = pd.read_sql_query('SELECT * FROM USvideos;', conn)
-    df_de = pd.read_sql_query('SELECT * FROM DEvideos;', conn)
-    df_gb = pd.read_sql_query('SELECT * FROM GBvideos;', conn)
-    df_ca = pd.read_sql_query('SELECT * FROM CAvideos;', conn)
-    df_fr = pd.read_sql_query('SELECT * FROM FRvideos;', conn)
+    df_us = pd.read_sql_query('SELECT video_id, category_id FROM USvideos;', conn)
+    df_de = pd.read_sql_query('SELECT video_id, category_id FROM DEvideos;', conn)
+    df_gb = pd.read_sql_query('SELECT video_id, category_id FROM GBvideos;', conn)
+    df_ca = pd.read_sql_query('SELECT video_id, category_id FROM CAvideos;', conn)
+    df_fr = pd.read_sql_query('SELECT video_id, category_id FROM FRvideos;', conn)
     conn.close()
 
     df_us = df_us.assign(language='us')
@@ -23,5 +23,4 @@ def create_dataframe(db_path='class.db'):
     df_fr = df_us.assign(language='fr')
 
     df = pd.concat([df_us, df_de, df_gb, df_ca, df_fr])
-    df = df[['category_id', 'video_id', 'language']]
     return df
