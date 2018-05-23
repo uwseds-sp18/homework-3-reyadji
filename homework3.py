@@ -20,7 +20,7 @@ def create_dataframe(db_path='class.db'):
     df_de = df_de.assign(language='de')
     df_gb = df_gb.assign(language='gb')
     df_ca = df_ca.assign(language='ca')
-    df_fr = df_us.assign(language='fr')
+    df_fr = df_fr.assign(language='fr')
 
     df = pd.concat([df_us, df_de, df_gb, df_ca, df_fr])
     return df
